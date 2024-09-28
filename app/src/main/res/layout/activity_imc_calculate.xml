@@ -44,7 +44,7 @@
         android:id="@+id/cvFemale"
         android:layout_width="0dp"
         android:layout_height="150dp"
-        app:cardBackgroundColor="@color/green4"
+        app:cardBackgroundColor="@color/purple_200"
         app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cvMale"
@@ -102,18 +102,19 @@
                 android:textColor="@color/white"
                 android:textSize="50sp"
                 android:textStyle="bold"
-                tools:text="170 cm"
-
+                android:text="1.20 m"
+                android:maxLines="1"
                 />
 
             <com.google.android.material.slider.RangeSlider
+                android:id="@+id/rsHeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:contentDescription="@string/imc_slider_height"
-                android:stepSize="1"
-                android:valueFrom="120"
-                android:valueTo="200"
+                android:stepSize=".01"
+                android:valueFrom="1.20"
+                android:valueTo="2.00"
                 app:haloColor="?attr/colorAccent"
                 app:thumbColor="@color/green2"
                 app:trackColor="@color/white" />
@@ -165,6 +166,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnRemoveHeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -173,6 +175,7 @@
                     app:tint="@color/green1" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnAddHeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add"
@@ -227,6 +230,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnRemoveAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -235,6 +239,7 @@
                     app:tint="@color/green1" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnAddAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add"
@@ -248,18 +253,17 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCalculate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/btnCalculate"
+        android:layout_marginBottom="32dp"
+        android:background="@color/white"
         android:text="@string/imc_button_calculate"
         android:textAllCaps="true"
-        android:background="@color/white"
-        android:textStyle="bold"
         android:textColor="@color/green2"
-        android:layout_marginBottom="32dp"
-        />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
