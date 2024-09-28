@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">imcapp</string>
+    <string name="imc_tittle_principal">Calcula tu IMC</string>
+    <string name="imc_subtitle_high">Altura</string>
+    <string name="imc_subtitle_height">Altura</string>
+    <string name="imc_slider_height">Select range between 0 and 100</string>
+    <string name="imc_subtitle_weight">Peso</string>
+    <string name="imc_subtitle_age">Edad</string>
+    <string name="imc_button_calculate">Calculate</string>
 </resources>
