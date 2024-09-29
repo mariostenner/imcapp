@@ -7,4 +7,16 @@
     <string name="imc_subtitle_weight">Peso</string>
     <string name="imc_subtitle_age">Edad</string>
     <string name="imc_button_calculate">Calculate</string>
+    <string name="title_activity_imc_result">ImcResultActivity</string>
+    <string name="imc_tittle_result">Tu IMC es:</string>
+    <string name="imc_subttitle_level">Normal</string>
+    <string name="imc_button_recalculate">Re-Calculate</string>
+    <string name="imc_low_level">Bajo Peso</string>
+    <string name="imc_normal_level">Normal</string>
+    <string name="imc_high_level">Sobrepeso</string>
+    <string name="imc_low_level_desc">Tu peso es bajo para tu altura</string>
+    <string name="imc_normal_level_desc">Tu peso es el adecuado para tu altura</string>
+    <string name="imc_high_level_desc">Tu peso es alto para tu altura</string>
+    <string name="imc_error_level">Medición Incorrecta</string>
+
 </resources>

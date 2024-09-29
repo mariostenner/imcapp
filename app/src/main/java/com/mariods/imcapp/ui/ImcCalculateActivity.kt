@@ -2,7 +2,6 @@ package com.mariods.imcapp.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
@@ -12,7 +11,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.slider.RangeSlider
 import com.mariods.imcapp.R
 import java.text.DecimalFormat
-import java.text.Format
 
 class ImcCalculateActivity : AppCompatActivity() {
 
@@ -20,6 +18,7 @@ class ImcCalculateActivity : AppCompatActivity() {
     private var currentWeight = 70
     private var currentAge = 30
     private var gender = true
+    private val df = DecimalFormat("#.##")
 
     private lateinit var cvMale: CardView
     private lateinit var cvFemale: CardView
@@ -36,6 +35,9 @@ class ImcCalculateActivity : AppCompatActivity() {
     private lateinit var cvWeight: CardView
     private lateinit var cvAge: CardView
 
+    companion object {
+        const val IMC_RESULT = "IMC_RESULT"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,23 +69,24 @@ class ImcCalculateActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
-        cvMale.setOnClickListener{
+        cvMale.setOnClickListener {
             gender = true
             setGenderColors()
         }
         cvFemale.setOnClickListener {
             gender = false
-            setGenderColors() }
+            setGenderColors()
+        }
 
         rsHeight.addOnChangeListener { _, value, _ ->
             currentHeight = value
-            val df = DecimalFormat("#.##")
-            tvHeight.text =  "${df.format(currentHeight).toString()} m"
+            tvHeight.text = "${df.format(currentHeight).toString()} m"
         }
 
         btnRemoveWeight.setOnClickListener {
             currentWeight -= 1
-            setWeight() }
+            setWeight()
+        }
         btnAddWeight.setOnClickListener {
             currentWeight += 1
             setWeight()
@@ -98,10 +101,7 @@ class ImcCalculateActivity : AppCompatActivity() {
             setAge()
         }
 
-        btnCalculateImc.setOnClickListener {
-            val result = calculateIMC()
-            navigateToresult(result)
-        }
+        btnCalculateImc.setOnClickListener { navigateToresult(calculateIMC()) }
     }
 
     private fun initUI() {
@@ -110,15 +110,15 @@ class ImcCalculateActivity : AppCompatActivity() {
         setAge()
     }
 
-    private fun setGenderColors(){
+    private fun setGenderColors() {
         val maleColor = getColor(R.color.green4)
         val femaleColor = getColor(R.color.purple_200)
-        if(gender){
+        if (gender) {
             cvMale.setCardBackgroundColor(maleColor)
             cvHeight.setCardBackgroundColor(maleColor)
             cvWeight.setCardBackgroundColor(maleColor)
             cvAge.setCardBackgroundColor(maleColor)
-        }else{
+        } else {
             cvFemale.setCardBackgroundColor(femaleColor)
             cvHeight.setCardBackgroundColor(femaleColor)
             cvWeight.setCardBackgroundColor(femaleColor)
@@ -130,13 +130,16 @@ class ImcCalculateActivity : AppCompatActivity() {
         tvWeight.text = currentWeight.toString()
     }
 
-    private fun setAge(){
+    private fun setAge() {
         tvAge.text = currentAge.toString()
     }
 
-    private fun calculateIMC() = (currentWeight / (currentHeight*currentHeight)).toString()
+    private fun calculateIMC() =
+        df.format(currentWeight / (currentHeight * currentHeight)).toDouble()
 
-    private fun navigateToresult(resultIMC: String){
-        //val intentResult = Intent(this,)
+    private fun navigateToresult(resultIMC: Double) {
+        val intentResult = Intent(this, ImcResultActivity::class.java)
+        intentResult.putExtra(IMC_RESULT, resultIMC)
+        startActivity(intentResult)
     }
 }
